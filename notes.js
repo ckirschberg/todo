@@ -1,13 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
-
-import TodoItem from './components/TodoItem';
-import TodoInput from './components/TodoInput';
-
-export default function App() {
-
-  //1: Set up const [mytodo, setTodo] = useState(''); (state) and 
+//1: Set up const [mytodo, setTodo] = useState(''); (state) and 
   // <TextInput placeholder="New Todo" value={mytodo}/>
   
   //2 Set up:
@@ -70,45 +61,3 @@ export default function App() {
   // const removeTodoHandler = todoKey => {
   //   addTodo(currentTodos => currentTodos.filter(todo => todo.key !== todoKey));
   // }
-
-
-  const [mytodos, addTodo] = useState([]);
-
-  const removeTodoHandler = todoKey => {
-    addTodo(currentTodos => currentTodos.filter(todo => todo.key !== todoKey));
-  }
-
-  const onTodoHandler = (todoTitle) => {
-    //FlatList must have key property to not throw a warning
-    // addTodo(currentTodos => [...currentTodos, mytodo]);
-    addTodo(currentTodos => [...currentTodos, {key: Math.random().toString(), value: todoTitle}]);
-  }
-
-  return (
-    <View style={styles.container}>
-      {/* <View style={styles.container}></View>
-       { <TextInput placeholder="New Todo" onChangeText={todoInputHandler} value={mytodo}/>
-        <Button title="Add Todo" onPress={onTodoHandler}></Button> }
-      </View>
-       */}
-      <TodoInput onAddTodo={onTodoHandler}/>
-      <View style={styles.container}>
-        <FlatList data={mytodos} renderItem={itemData => (
-          <TodoItem onDelete={removeTodoHandler.bind(this, itemData.item.key)} title={itemData.item.value}/>
-          // <View>
-          //   <Text>{itemData.item.value}</Text>
-          // </View>
-        )}/>
-      </View>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
