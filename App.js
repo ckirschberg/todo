@@ -94,7 +94,8 @@ export default function App() {
       <TodoInput onAddTodo={onTodoHandler}/>
       <View style={styles.container}>
         <FlatList data={mytodos} renderItem={itemData => (
-          <TodoItem onDelete={removeTodoHandler.bind(this, itemData.item.key)} title={itemData.item.value}/>
+          <TodoItem onDelete={removeTodoHandler.bind(this, itemData.item.key)} 
+            title={itemData.item.value}/>
           // <View>
           //   <Text>{itemData.item.value}</Text>
           // </View>
